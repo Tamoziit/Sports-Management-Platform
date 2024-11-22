@@ -18,7 +18,7 @@ const app = express();
 const corsConfig = {
     origin: ["https://thesportsedgecomfrontend.vercel.app", "http://localhost:5173"],
     methods: ['GET', 'POST', 'PATCH', 'DELETE'],
-    allowedHeaders: ['Content-Type', 'Authorization'],
+    //allowedHeaders: ['Content-Type', 'Authorization'],
     credentials: true
 };
 
