@@ -15,13 +15,6 @@ import paymentRoutes from "./routes/payment.routes.js";
 const PORT = process.env.PORT || 5000;
 const app = express();
 
-const corsConfig = {
-    origin: ["https://thesportsedgecomfrontend.vercel.app", "http://localhost:5173"],
-    methods: ['GET', 'POST', 'PATCH', 'DELETE'],
-    //allowedHeaders: ['Content-Type', 'Authorization'],
-    credentials: true
-};
-
 // Content Security Policy
 const cspDirectives = {
     defaultSrc: ["'self'"],
@@ -54,7 +47,13 @@ app.use(
         directives: cspDirectives,
     })
 );
-app.use(cors(corsConfig));
+app.use(cors({
+    origin: ["https://thesportsedgecomfrontend.vercel.app", "http://localhost:5173"], // Allowed origins
+    methods: ['GET', 'POST', 'PATCH', 'DELETE'], // Allowed methods
+    allowedHeaders: ['Content-Type', 'Authorization'], // Allowed headers
+    credentials: true // Include credentials if needed
+}));
+app.options('*', cors()); // Allow preflight requests
 
 app.get("/", (req, res) => {
     res.send("<h1>*...TheSportingEdge.com API V1 Backend...*</h1>");
