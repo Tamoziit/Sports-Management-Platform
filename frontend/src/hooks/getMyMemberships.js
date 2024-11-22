@@ -4,13 +4,12 @@ import { useAuthContext } from "../context/AuthContext";
 
 const useGetMyMemberships = () => {
     const [loading, setLoading] = useState();
-    const apiUrl = import.meta.env.VITE_API_URL;
     const { authUser } = useAuthContext();
 
     const memberships = async () => {
         setLoading(true);
         try {
-            const res = await fetch(`${apiUrl}/events/my-clubs/${authUser._id}`, {
+            const res = await fetch(`/api/v1/events/my-clubs/${authUser._id}`, {
                 method: "GET",
                 headers: {
                     "Content-Type": "application/json"
@@ -25,6 +24,7 @@ const useGetMyMemberships = () => {
             return data;
         } catch (error) {
             toast.error(error.message);
+            console.log(error);
         } finally {
             setLoading(false);
         }

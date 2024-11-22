@@ -46,7 +46,7 @@ export const getMyClubs = async (req, res) => {
             res.status(400).json({ error: "Error in Fetching orders" });
         }
     } catch (err) {
-        console.log(err.message)
+        console.log(err)
         res.status(500).json({ error: "Internal Server Error" });
     }
 }

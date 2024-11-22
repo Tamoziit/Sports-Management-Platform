@@ -27,12 +27,12 @@ const MyRegistrations = () => {
                 <h1 className="text-[30px] lg:text-[50px] font-semibold text-gray-700">My Registered Events</h1>
                 <div className="bg-gray-300 w-full h-[1.5px] mb-7"></div>
 
-                {eventsData.length !== 0 ? (
+                {eventsData?.length !== 0 ? (
                     loading ? (
                         <span><Spinner /></span>
                     ) : (
                         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
-                            {eventsData.map((event, index) => (
+                            {eventsData?.map((event, index) => (
                                 <RegistrationCard key={index} event={event} />
                             ))}
                         </div>

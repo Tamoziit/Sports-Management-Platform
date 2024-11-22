@@ -37,12 +37,12 @@ const Home = () => {
                 <h1 className="text-[30px] lg:text-[50px] font-semibold text-gray-700">My Clubs</h1>
                 <div className="bg-gray-300 w-full h-[1.5px] mb-7"></div>
 
-                {clubData.length !== 0 ? (
+                {clubData?.length ? (
                     loading ? (
                         <Spinner />
                     ) : (
                         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
-                            {clubData.slice().reverse().map((club, index) => (
+                            {clubData?.slice().reverse().map((club, index) => (
                                 <MembershipCard key={index} club={club} />
                             ))}
                         </div>

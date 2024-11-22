@@ -139,6 +139,9 @@ const Login = () => {
 													value={newPassword}
 													onChange={(e) => setNewPassword(e.target.value)}
 												/>
+												<button onClick={(e) => { e.preventDefault(); setSecure(!secure); }}>
+													<HiMiniEyeSlash className="ml-4 text-gray-600 h-10 mr-4" />
+												</button>
 											</div>
 										</>
 									)}

@@ -39,7 +39,7 @@ const Events = () => {
           <span>Loading...</span>
         ) : (
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
-            {clubData.map((club, index) => (
+            {clubData?.map((club, index) => (
               <ClubCard key={index} club={club} />
             ))}
           </div>
@@ -54,7 +54,7 @@ const Events = () => {
           <Spinner />
         ) : (
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
-            {eventsData.map((event, index) => (
+            {eventsData?.map((event, index) => (
               <EventCard key={index} event={event} />
             ))}
           </div>

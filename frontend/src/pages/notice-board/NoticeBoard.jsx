@@ -30,7 +30,7 @@ const NoticeBoard = () => {
           <Spinner />
         ) : (
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
-            {eventsData.map((event, index) => (
+            {eventsData?.map((event, index) => (
               <NoticeCard key={index} event={event} />
             ))}
           </div>

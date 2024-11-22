@@ -5,12 +5,11 @@ import { useAuthContext } from "../context/AuthContext";
 const useLogin = () => {
     const [loading, setLoading] = useState(false);
     const { setAuthUser } = useAuthContext();
-    const apiUrl = import.meta.env.VITE_API_URL;
-
+    
     const login = async ({ email, password }) => {
         setLoading(true);
         try {
-            const res = await fetch(`${apiUrl}/auth/login`, {
+            const res = await fetch(`/api/v1/auth/login`, {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json"

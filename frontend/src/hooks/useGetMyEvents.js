@@ -4,13 +4,12 @@ import { useAuthContext } from "../context/AuthContext";
 
 const useGetMyEvents = () => {
     const [loading, setLoading] = useState();
-    const apiUrl = import.meta.env.VITE_API_URL;
     const { authUser } = useAuthContext()
 
     const myEvents = async () => {
         setLoading(true);
         try {
-            const res = await fetch(`${apiUrl}/events/my-registrations/${authUser._id}`, {
+            const res = await fetch(`/api/v1/events/my-registrations/${authUser._id}`, {
                 method: "GET",
                 headers: {
                     "Content-Type": "application/json"
