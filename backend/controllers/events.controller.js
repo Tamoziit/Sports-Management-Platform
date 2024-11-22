@@ -1,5 +1,5 @@
-import clubsData from "../data/clubs.data.json" assert { type: 'json' };
-import eventsData from "../data/events.data.json" assert { type: 'json' };
+import events from "../data/events.data.js";
+import clubs from "../data/clubs.data.js";
 import Event from "../models/event.model.js";
 import Membership from "../models/order.model.js";
 import Payment from "../models/payment.model.js";
@@ -7,7 +7,7 @@ import Registration from "../models/registration.model.js";
 
 export const getClubs = (req, res) => {
     try {
-        const data = clubsData.clubs;
+        const data = clubs;
         return res.status(200).json(data);
     } catch (error) {
         console.log(error.message);
@@ -18,7 +18,7 @@ export const getClubs = (req, res) => {
 export const getClubById = (req, res) => {
     try {
         const id = req.params.id;
-        const data = clubsData.clubs.find(club => club.id === id);
+        const data = clubs.find(club => club.id === id);
         if (data) {
             res.status(200).json(data);
         } else {
@@ -53,7 +53,7 @@ export const getMyClubs = async (req, res) => {
 
 export const getEvents = (req, res) => {
     try {
-        const data = eventsData.events;
+        const data = events;
         return res.status(200).json(data);
     } catch (error) {
         console.log(error.message);
@@ -64,7 +64,7 @@ export const getEvents = (req, res) => {
 export const getEventById = (req, res) => {
     try {
         const id = req.params.id;
-        const data = eventsData.events.find(event => event.id === id);
+        const data = events.find(event => event.id === id);
         if (data) {
             res.status(200).json(data);
         } else {

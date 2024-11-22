@@ -1,5 +1,5 @@
 import stripe from "../stripe/stripeInit.js";
-import clubsData from "../data/clubs.data.json" assert { type: 'json' };
+import clubs from "../data/clubs.data.js";
 import Payment from "../models/payment.model.js";
 import Membership from "../models/order.model.js";
 
@@ -47,7 +47,7 @@ export const confirmMembership = async (req, res) => {
         const { order_id, session_id, user_id } = req.body;
         console.log({ order_id, session_id, user_id });
 
-        const product = clubsData.clubs.find(club => club.id === order_id);
+        const product = clubs.find(club => club.id === order_id);
         const session = await stripe.checkout.sessions.retrieve(session_id, {
             expand: ['payment_intent.payment_method']
         });

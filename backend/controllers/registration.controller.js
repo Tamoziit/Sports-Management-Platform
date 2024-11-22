@@ -1,5 +1,5 @@
 import stripe from "../stripe/stripeInit.js";
-import eventsData from "../data/events.data.json" assert { type: 'json' };
+import events from "../data/events.data.js";
 import Event from "../models/event.model.js";
 import Registration from "../models/registration.model.js";
 
@@ -51,7 +51,7 @@ export const confirmRegistration = async (req, res) => {
     try {
         const { order_id, session_id, user_id } = req.body;
 
-        const product = eventsData.events.find(event => event.id === order_id);
+        const product = events.find(event => event.id === order_id);
         const session = await stripe.checkout.sessions.retrieve(session_id, {
             expand: ['payment_intent.payment_method']
         });
