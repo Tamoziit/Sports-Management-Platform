@@ -25,8 +25,7 @@ const corsConfig = {
     ],
     allowHeaders: [
         'Content-Type'
-    ],
-    credentials: true
+    ]
 };
 
 // Content Security Policy
