@@ -16,17 +16,14 @@ const PORT = process.env.PORT || 5000;
 const app = express();
 
 const corsConfig = {
-    origin: "*",
-    methods: [
-        'GET',
-        'POST',
-        'PATCH',
-        'DELETE'
-    ],
-    allowHeaders: [
-        'Content-Type'
-    ]
+    origin: ["https://thesportsedgecomfrontend.vercel.app", "http://localhost:5173"],
+    methods: ['GET', 'POST', 'PATCH', 'DELETE'],
+    allowedHeaders: ['Content-Type', 'Authorization'],
+    credentials: true
 };
+
+app.use(cors(corsConfig));
+
 
 // Content Security Policy
 const cspDirectives = {
