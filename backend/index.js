@@ -53,7 +53,22 @@ app.use(cors({
     allowedHeaders: ['Content-Type', 'Authorization'], // Allowed headers
     credentials: true // Include credentials if needed
 }));
-app.options('*', cors()); // Allow preflight requests
+app.use((req, res, next) => {
+    res.setHeader("Access-Control-Allow-Origin", "https://thesportsedgecomfrontend.vercel.app"); // Replace with your frontend URL
+    res.setHeader("Access-Control-Allow-Methods", "GET, POST, PATCH, DELETE");
+    res.setHeader("Access-Control-Allow-Headers", "Content-Type, Authorization");
+    res.setHeader("Access-Control-Allow-Credentials", "true"); // Include credentials (if needed)
+    next();
+});
+app.options("*", (req, res) => {
+    res.setHeader("Access-Control-Allow-Origin", "https://thesportsedgecomfrontend.vercel.app");
+    res.setHeader("Access-Control-Allow-Methods", "GET, POST, PATCH, DELETE");
+    res.setHeader("Access-Control-Allow-Headers", "Content-Type, Authorization");
+    res.setHeader("Access-Control-Allow-Credentials", "true");
+    res.sendStatus(200); // Respond OK to preflight
+});
+
+
 
 app.get("/", (req, res) => {
     res.send("<h1>*...TheSportingEdge.com API V1 Backend...*</h1>");
