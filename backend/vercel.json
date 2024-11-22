@@ -16,10 +16,5 @@
             "src": "/(.*)",
             "dest": "/"
         }
-    ],
-    "functions": {
-        "node14": {
-            "runtime": "nodejs20.x"
-        }
-    }
+    ]
 }
