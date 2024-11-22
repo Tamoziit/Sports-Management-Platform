@@ -63,7 +63,9 @@ app.use(
 );
 app.use(cors(corsConfig));
 
-
+app.get("/", (req, res) => {
+    res.send("<h1>*...TheSportingEdge.com API V1 Backend...*</h1>");
+});
 app.get("/api/v1", (req, res) => {
     res.send("<h1>Test...All Up & Running!</h1>");
 });
