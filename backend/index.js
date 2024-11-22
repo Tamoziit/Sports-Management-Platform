@@ -4,7 +4,6 @@ import bodyParser from "body-parser";
 import morgan from "morgan";
 import helmet from "helmet";
 import cors from "cors";
-import path from "path";
 dotenv.config();
 
 import connectToMongoDB from "./db/connectToMongoDB.js";
@@ -15,7 +14,6 @@ import paymentRoutes from "./routes/payment.routes.js";
 
 const PORT = process.env.PORT || 5000;
 const app = express();
-const __dirname = path.resolve();
 
 const corsConfig = {
     origin: "*",
@@ -73,11 +71,6 @@ app.get("/api/v1", (req, res) => {
 app.use("/api/v1/auth", authRoutes);
 app.use("/api/v1/events", eventRoutes);
 app.use("/api/v1/payments", paymentRoutes);
-
-app.use(express.static(path.join(__dirname, "/frontend/dist")));
-app.get("*", (req, res) => {
-    res.sendFile(path.join(__dirname, "frontend", "dist", "index.html"));
-});
 
 app.listen(PORT, () => {
     console.log(`Server Listening on Port ${PORT}`);

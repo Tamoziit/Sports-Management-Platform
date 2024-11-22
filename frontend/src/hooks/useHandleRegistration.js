@@ -3,6 +3,7 @@ import toast from "react-hot-toast";
 
 const useHandleRegistration = () => {
 	const [payLoading, setPayLoading] = useState(false);
+	const apiUrl = import.meta.env.VITE_API_URL;
 	
 	const handleRegistration = async (prodInfo) => {
         console.log("prod info: ", prodInfo);
@@ -21,7 +22,7 @@ const useHandleRegistration = () => {
 
 		setPayLoading(true);
 		try {
-			const res = await fetch(`/api/v1/payments/register`, {
+			const res = await fetch(`${apiUrl}/api/v1/payments/register`, {
 				method: "POST",
 				headers: {
 					"Content-Type": "application/json"

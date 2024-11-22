@@ -5,6 +5,7 @@ import { useAuthContext } from "../context/AuthContext";
 const useConfirmRegistration = () => {
     const [payLoading, setLoading] = useState();
     const { authUser } = useAuthContext();
+    const apiUrl = import.meta.env.VITE_API_URL;
 
     const register = async ({ order_id, session_id }) => {
         const body = {
@@ -14,7 +15,7 @@ const useConfirmRegistration = () => {
         }
         setLoading(true);
         try {
-            const res = await fetch(`/api/v1/payments/confirm-registration`, {
+            const res = await fetch(`${apiUrl}/api/v1/payments/confirm-registration`, {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json"

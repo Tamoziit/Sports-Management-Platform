@@ -5,6 +5,7 @@ import { useAuthContext } from "../context/AuthContext";
 const useBuyMembership = () => {
     const [payLoading, setLoading] = useState();
     const { authUser } = useAuthContext();
+    const apiUrl = import.meta.env.VITE_API_URL;
     
     const buy = async ({ order_id, session_id }) => {
         const body = {
@@ -14,7 +15,7 @@ const useBuyMembership = () => {
         }
         setLoading(true);
         try {
-            const res = await fetch(`/api/v1/payments/confirm-membership`, {
+            const res = await fetch(`${apiUrl}/api/v1/payments/confirm-membership`, {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json"

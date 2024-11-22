@@ -35,7 +35,6 @@ export const paymentHandler = async (req, res) => {
             allow_promotion_codes: true
         });
 
-        console.log(session.url);
         res.json({ url: session.url });
     } catch (err) {
         console.log("Error in paymentHandler", err.message);
