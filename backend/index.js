@@ -42,6 +42,7 @@ app.use(cors({
     allowedHeaders: ['Content-Type', 'Authorization'],
     credentials: true
 }));
+app.options('*', cors()); // Enable CORS for all routes
 app.use(express.json());
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
