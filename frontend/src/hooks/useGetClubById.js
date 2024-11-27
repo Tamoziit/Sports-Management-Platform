@@ -3,12 +3,11 @@ import toast from "react-hot-toast";
 
 const useGetClubById = () => {
     const [loading, setLoading] = useState();
-    const apiUrl = import.meta.env.VITE_API_URL;
-    
+   
     const club = async (id) => {
         setLoading(true);
         try {
-            const res = await fetch(`${apiUrl}/api/v1/events/get-club/${id}`, {
+            const res = await fetch(`/api/v1/events/get-club/${id}`, {
                 method: "GET",
                 headers: {
                     "Content-Type": "application/json"

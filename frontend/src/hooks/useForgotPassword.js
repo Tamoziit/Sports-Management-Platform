@@ -6,7 +6,6 @@ const useForgotPassword = () => {
     const [otpSent, setOtpSent] = useState(false);
     const [otp, setOtp] = useState('');
     const [loading, setLoading] = useState(false);
-    const apiUrl = import.meta.env.VITE_API_URL;
    
     const sendOTP = async (email) => {
         const generatedOTP = createOTP();
@@ -22,6 +21,10 @@ const useForgotPassword = () => {
                 message: generatedOTP
             }
         };
+        const x = import.meta.env.VITE_EMAILJS_SERVICE_ID;
+        const y = import.meta.env.VITE_EMAILJS_TEMPLATE_ID;
+        const z = import.meta.env.VITE_EMAILJS_USER_ID;
+        console.log({x, y, z});
 
         setLoading(true);
         try {
@@ -64,7 +67,7 @@ const useForgotPassword = () => {
     const resetPassword = async (email, newPassword) => {
         setLoading(true);
         try {
-            const response = await fetch(`${apiUrl}/api/v1/auth/update-password`, {
+            const response = await fetch(`/api/v1/auth/update-password`, {
                 method: 'PATCH',
                 headers: {
                     'Content-Type': 'application/json'

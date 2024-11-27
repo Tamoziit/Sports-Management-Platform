@@ -3,8 +3,11 @@ import dotenv from "dotenv";
 import bodyParser from "body-parser";
 import morgan from "morgan";
 import helmet from "helmet";
+import path from "path";
 import cors from "cors";
 dotenv.config();
+
+const __dirname = path.resolve();
 
 import connectToMongoDB from "./db/connectToMongoDB.js";
 import authRoutes from "./routes/auth.routes.js";
@@ -35,14 +38,23 @@ const cspDirectives = {
     objectSrc: ["'none'"] // Disable <object> elements
 };
 
-//middlewares
-app.use(cors({
-    origin: ["https://thesportingedgecomfrontend.vercel.app", "http://localhost:5173"],
-    methods: ['GET', 'POST', 'PATCH', 'DELETE'],
-    allowedHeaders: ['Content-Type', 'Authorization'],
+const corOpts = {
+    origin: '*',
+    methods: [
+        'GET',
+        'POST',
+        'PATCH',
+        'DELETE'
+    ],
+    allowedHeaders: [
+        'Content-Type',
+        'Authorization',
+    ],
     credentials: true
-}));
-app.options('*', cors()); // Enable CORS for all routes
+};
+
+//middlewares
+app.use(cors(corOpts));
 app.use(express.json());
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
@@ -55,9 +67,6 @@ app.use(
     })
 );
 
-app.get("/", (req, res) => {
-    res.send("<h1>*...TheSportingEdge.com API V1 Backend...*</h1>");
-});
 app.get("/api/v1", (req, res) => {
     res.send("<h1>Test...All Up & Running!</h1>");
 });
@@ -65,6 +74,11 @@ app.get("/api/v1", (req, res) => {
 app.use("/api/v1/auth", authRoutes);
 app.use("/api/v1/events", eventRoutes);
 app.use("/api/v1/payments", paymentRoutes);
+
+app.use(express.static(path.join(__dirname, "/frontend/dist")));
+app.get("*", (req, res) => {
+    res.sendFile(path.join(__dirname, "frontend", "dist", "index.html"));
+});
 
 app.listen(PORT, () => {
     console.log(`Server Listening on Port ${PORT}`);

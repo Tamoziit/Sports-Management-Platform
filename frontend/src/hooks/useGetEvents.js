@@ -3,12 +3,11 @@ import toast from "react-hot-toast";
 
 const useGetEvents = () => {
     const [enLoading, setEnLoading] = useState();
-    const apiUrl = import.meta.env.VITE_API_URL;
-    
+
     const events = async () => {
         setEnLoading(true);
         try {
-            const res = await fetch(`${apiUrl}/api/v1/events/get-events`, {
+            const res = await fetch(`/api/v1/events/get-events`, {
                 method: "GET",
                 headers: {
                     "Content-Type": "application/json"
