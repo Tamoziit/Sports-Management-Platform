@@ -36,6 +36,12 @@ const cspDirectives = {
 };
 
 //middlewares
+app.use(cors({
+    origin: ["https://thesportsedgecomfrontend.vercel.app", "http://localhost:5173"],
+    methods: ['GET', 'POST', 'PATCH', 'DELETE'],
+    allowedHeaders: ['Content-Type', 'Authorization'],
+    credentials: true
+}));
 app.use(express.json());
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
@@ -47,12 +53,6 @@ app.use(
         directives: cspDirectives,
     })
 );
-app.use(cors({
-    origin: ["https://thesportsedgecomfrontend.vercel.app", "http://localhost:5173"],
-    methods: ['GET', 'POST', 'PATCH', 'DELETE'],
-    allowedHeaders: ['Content-Type', 'Authorization'],
-    credentials: true
-}));
 
 app.get("/", (req, res) => {
     res.send("<h1>*...TheSportingEdge.com API V1 Backend...*</h1>");
