@@ -21,10 +21,6 @@ const useForgotPassword = () => {
                 message: generatedOTP
             }
         };
-        const x = import.meta.env.VITE_EMAILJS_SERVICE_ID;
-        const y = import.meta.env.VITE_EMAILJS_TEMPLATE_ID;
-        const z = import.meta.env.VITE_EMAILJS_USER_ID;
-        console.log({x, y, z});
 
         setLoading(true);
         try {
