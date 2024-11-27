@@ -48,10 +48,10 @@ app.use(
     })
 );
 app.use(cors({
-    origin: ["https://thesportsedgecomfrontend.vercel.app", "http://localhost:5173"], // Allowed origins
-    methods: ['GET', 'POST', 'PATCH', 'DELETE'], // Allowed methods
-    allowedHeaders: ['Content-Type', 'Authorization'], // Allowed headers
-    credentials: true // Include credentials if needed
+    origin: ["https://thesportsedgecomfrontend.vercel.app", "http://localhost:5173"],
+    methods: ['GET', 'POST', 'PATCH', 'DELETE'],
+    allowedHeaders: ['Content-Type', 'Authorization'],
+    credentials: true
 }));
 
 app.get("/", (req, res) => {
