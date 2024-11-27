@@ -13,7 +13,7 @@ const useSignup = () => {
         mobileNo,
         role
     }) => {
-        const success = handleInputErrors({ name, email, password, mobileNo });
+        const success = handleInputErrors({ name, email, password, mobileNo, role });
         if (!success) return;
 
         setLoading(true);
