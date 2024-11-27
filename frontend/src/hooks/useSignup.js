@@ -52,8 +52,8 @@ const useSignup = () => {
 export default useSignup;
 
 
-function handleInputErrors({ name, email, password, mobileNo }) {
-    if (!name || !email || !password || !mobileNo) {
+function handleInputErrors({ name, email, password, mobileNo, role }) {
+    if (!name || !email || !password || !mobileNo || !role) {
         toast.error("Please fill all the fields");
         return false;
     }

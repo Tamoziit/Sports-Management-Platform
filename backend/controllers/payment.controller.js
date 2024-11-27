@@ -45,8 +45,7 @@ export const paymentHandler = async (req, res) => {
 export const confirmMembership = async (req, res) => {
     try {
         const { order_id, session_id, user_id } = req.body;
-        console.log({ order_id, session_id, user_id });
-
+        
         const product = clubs.find(club => club.id === order_id);
         const session = await stripe.checkout.sessions.retrieve(session_id, {
             expand: ['payment_intent.payment_method']
